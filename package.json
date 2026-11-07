@@ -1,0 +1,22 @@
+{
+  "name": "viztos-platform",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k \"npm:dev:frontend\" \"npm:dev:worker\"",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:worker": "wrangler dev --config worker/wrangler.toml",
+    "build": "npm --prefix frontend run build",
+    "typecheck": "tsc --noEmit -p worker/tsconfig.json && npm --prefix frontend run typecheck",
+    "db:local": "wrangler d1 migrations apply viztos-db --local --config worker/wrangler.toml",
+    "db:remote": "wrangler d1 migrations apply viztos-db --remote --config worker/wrangler.toml",
+    "deploy:worker": "wrangler deploy --config worker/wrangler.toml",
+    "deploy:pages": "npm --prefix frontend run build && wrangler pages deploy frontend/dist --project-name viztos"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.7.3",
+    "wrangler": "^4.0.0"
+  }
+}

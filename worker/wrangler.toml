@@ -1,0 +1,21 @@
+name = "viztos-api"
+main = "src/index.ts"
+compatibility_date = "2026-11-07"
+workers_dev = true
+
+[vars]
+APP_ENV = "development"
+ALLOWED_ORIGIN = "http://localhost:5173"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "viztos-db"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+migrations_dir = "../database/migrations"
+
+[[r2_buckets]]
+binding = "DOCUMENTS"
+bucket_name = "viztos-documents"
+
+[observability]
+enabled = true
